@@ -1,20 +1,23 @@
 /*
 ========================================================================
-Create Database and Schemas
+Stored Procedure: Load Bronze Layer (Source -> Bronze)
 ========================================================================
 
 Script Purpose:
-   This script creates a new database named 'DataWarehouse' after checking if it already exists. 
-   If the database exists, it is dropped and recreated. Additionally, the script sets up three schemas
-   within the database: 'bronze', 'silver', and 'gold'.
+   This stored procedure loads data into the 'bronze' schema from external CSV files.
+   It performs the following actions:
+   - Truncates the bronze tables before loading data.
+   - Uses the `BULK INSERT` command to load data from csv Files to bronze tables.
 
-WARNING:
-   Running this script will drop the entire 'DataWarehouse' database if it exists.
-   All data in the database will be permanently deleted. Proceed with caution
-   and ensure you have proper backups before running this script.
+Parameters:
+   None.
+   This stored procedure does not accept any parameters or return any values.
 
+Usage Example:
+   EXEC bronze.load_bronze;
+
+========================================================================
 */
-
 --Creating a stored procedure of all the bulk inserts
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS 
 BEGIN
